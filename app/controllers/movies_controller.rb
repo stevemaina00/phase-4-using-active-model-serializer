@@ -5,6 +5,10 @@ class MoviesController < ApplicationController
     movies = Movie.all
     render json: movies
   end
+  def summary
+    render json: movie, serializer: MovieSummarySerializer
+    "#{self.object.title} - #{self.object.description[0..49]}..."
+  end
 
   def show
     movie = Movie.find(params[:id])
